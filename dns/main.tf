@@ -1,18 +1,18 @@
 data "aws_route53_zone" "main" {
-  name = "${var.zone_name}"
+  name         = "${var.zone_name}"
   private_zone = false
 }
 
 resource "aws_route53_record" "cname" {
-    zone_id = "${data.aws_route53_zone.main.zone_id}"
-    name = "${var.public_dns_name}"
-    type = "CNAME"
-    ttl = "60"
-    records = ["${var.alb_dns_name}"]
+  zone_id = "${data.aws_route53_zone.main.zone_id}"
+  name    = "${var.public_dns_name}"
+  type    = "CNAME"
+  ttl     = "60"
+  records = ["${var.alb_dns_name}"]
 }
 
 resource "aws_acm_certificate" "main" {
-  domain_name = "${var.public_dns_name}"
+  domain_name       = "${var.public_dns_name}"
   validation_method = "DNS"
 }
 
@@ -25,6 +25,6 @@ resource "aws_route53_record" "validation" {
 }
 
 resource "aws_acm_certificate_validation" "main" {
-  certificate_arn = "${aws_acm_certificate.main.arn}"
+  certificate_arn         = "${aws_acm_certificate.main.arn}"
   validation_record_fqdns = "${aws_route53_record.validation.*.fqdn}"
 }

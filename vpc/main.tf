@@ -1,13 +1,13 @@
 data "aws_availability_zones" "available" {}
 
 resource "aws_vpc" "primary_vpc" {
-  cidr_block = "${var.vpc_cidr_block}"
+  cidr_block           = "${var.vpc_cidr_block}"
   enable_dns_hostnames = true
 }
 
 resource "aws_subnet" "public" {
-  count = "${var.availability_zone_count}"
-  cidr_block = "${cidrsubnet(aws_vpc.primary_vpc.cidr_block, 8, count.index)}"
+  count             = "${var.availability_zone_count}"
+  cidr_block        = "${cidrsubnet(aws_vpc.primary_vpc.cidr_block, 8, count.index)}"
   availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
   vpc_id            = "${aws_vpc.primary_vpc.id}"
 
@@ -100,9 +100,9 @@ resource "aws_security_group" "instance_sg" {
   }
 
   egress {
-    from_port = 5432
-    to_port = 5432
-    protocol = "tcp"
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
     cidr_blocks = ["${aws_subnet.private.cidr_block}"]
   }
 
@@ -112,5 +112,5 @@ resource "aws_security_group" "instance_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
 }

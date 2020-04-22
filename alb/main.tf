@@ -7,7 +7,7 @@ resource "aws_alb_target_group" "main" {
 
 resource "aws_alb" "main" {
   name            = "${var.alb_name}"
-  subnets = "${var.subnet_ids}"
+  subnets         = "${var.subnet_ids}"
   security_groups = "${var.security_groups}"
 }
 
@@ -16,7 +16,7 @@ resource "aws_alb_listener" "front_end_tls" {
   port              = "443"
   protocol          = "HTTPS"
 
-  ssl_policy = "ELBSecurityPolicy-2015-05"
+  ssl_policy      = "ELBSecurityPolicy-2015-05"
   certificate_arn = "${var.certificate_arn}"
 
   default_action {
