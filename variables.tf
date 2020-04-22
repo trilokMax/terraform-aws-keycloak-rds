@@ -7,6 +7,10 @@ variable "key_name" {
   description = "Name of the AWS key pair to use"
 }
 
+variable "docker_image_url" {
+  default = "jboss/keycloak:9.0.3"
+}
+
 variable "ecs_cluster_name" {
   default = "ecs_cluster"
 }

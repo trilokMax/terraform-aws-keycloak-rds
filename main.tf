@@ -56,6 +56,7 @@ module "rds" {
 module "ecs" {
   source = "./ecs"
 
+  docker_image_url            = "${var.docker_image_url}"
   keycloak_admin_username     = "${var.keycloak_admin_username}"
   keycloak_admin_password     = "${var.keycloak_admin_password}"
   app_log_group_name          = "${module.cloudwatch.app_log_group_name}"
