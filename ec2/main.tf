@@ -29,7 +29,7 @@ resource "aws_autoscaling_group" "app" {
 }
 
 data "template_file" "cloud_config" {
-  template = "${file("${path.module}/ec2/templates/cloud-config.tpl")}"
+  template = "${file("${path.module}/templates/cloud-config.tpl")}"
 
   vars = {
     aws_region         = "${var.aws_region}"
