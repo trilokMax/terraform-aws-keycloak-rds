@@ -39,7 +39,6 @@ module "alb" {
   subnet_ids      = "${module.vpc.public_subnet_ids}"
   security_groups = "${module.vpc.security_groups}"
   certificate_arn = "${module.dns.acm_certificate_arn}"
-
 }
 
 module "rds" {

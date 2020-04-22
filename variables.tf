@@ -5,6 +5,7 @@ variable "aws_region" {
 
 variable "key_name" {
   description = "Name of the AWS key pair to use"
+  default     = "keycloak"
 }
 
 variable "docker_image_url" {
