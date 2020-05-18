@@ -44,6 +44,11 @@ variable "aws_region" {}
 
 variable "ecs_iam_role_name" {}
 
+variable "launch_type" {
+  description = "The valid values are FARGATE and EC2"
+  default     = "FARGATE"
+}
+
 variable "alb_target_group_arn" {}
 
 variable "ecs_service_iam_role_policy" {}
